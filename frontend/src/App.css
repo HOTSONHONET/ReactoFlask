@@ -1,0 +1,15 @@
+.App {
+  background-color: white;
+  min-height: 100vh;
+  color: black;
+  padding:20px;
+}
+
+
+#intro{
+  text-align: center;
+}
+
+#bg-article{
+  background-color: rgb(146, 230, 211);
+}
