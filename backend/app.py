@@ -5,16 +5,37 @@ from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 
 app = Flask(__name__)
-# To allow cross platform data transfer
+
+"""
+To allow cross platform data transfer
+
+"""
+
 CORS(app)
+
+"""
+DB configuration for our application
+
+"""
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost/reactnFlaskDB"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
+"""
+Instantiating DB and marshmallow config
+
+"""
+
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
+
+
+"""
+Creating a table
+
+"""
 
 class Articles(db.Model):
     id  = db.Column(db.Integer, primary_key = True)
@@ -27,9 +48,20 @@ class Articles(db.Model):
         self.title = title
         self.body = body
 
+"""
+Creating Schema for Marshmallow
+
+"""
+
 class ArticlesSchema(ma.Schema):
     class Meta:
         fields = ('id', 'title', 'body', 'date')
+
+
+"""
+Creating Marshmallow serializers
+
+"""
 
 article_schema = ArticlesSchema()
 articles_schema = ArticlesSchema(many = True)
